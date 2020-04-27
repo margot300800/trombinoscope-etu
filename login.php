@@ -1,6 +1,6 @@
 <?php
 
-/*$nomFamille = $_POST['nomFam'];
+$nomFamille = $_POST['nomFam'];
 $prenom = $_POST['prenom'];
 $aMail = $_POST['addMail'];
 $num = $_POST['numero'];
@@ -10,10 +10,10 @@ $groupeTD = $_POST['gpTD'];
 $photoP = $_POST['pp'];
 $mdp = $_POST['pwd'];
 $mdp2 = $_PODT['pwd2'];
-$baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');*/
+$baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
 
 
-function recupDonnees(){
+/*function recupDonnees(){
 	$nomFamille = $_POST['nomFam'];
 	$prenom = $_POST['prenom'];
 	$aMail = $_POST['addMail'];
@@ -25,12 +25,12 @@ function recupDonnees(){
 	$mdp = $_POST['pwd'];
 	$mdp2 = $_PODT['pwd2'];
 	return $nomFammile, $prenom, $aMail, $num, $aPostale, $f, $groupeTD, $photoP, $mdp, $mdp2;
-	}
+	}*/
 
 
-function hashmdp(mdp){
+function hashmdp($mdp){
 	
-	
+	$mdp=1
 	
 	}
 
