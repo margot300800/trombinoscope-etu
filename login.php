@@ -58,7 +58,7 @@ else{*/
 	
 	//on vérifie que les 2 mots de passes sont identiques
 	if ($mdp=$mdp2){
-		hashmdp("mdp");
+		$mdp_hash = hashmdp($mdp);
 		$baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
 		
 		fwrite($baseCSVdonnee, $f);
@@ -82,7 +82,7 @@ else{*/
 		fwrite($baseCSVdonnee, $aPostale);
 		
 		fwrite($baseCSVdonnee, ";", 1);
-		fwrite($baseCSVdonnee, $pwd);
+		fwrite($baseCSVdonnee, $mdp_hash);
 		
 		fclose($baseCSVdonnee);
 		}
