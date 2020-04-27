@@ -29,14 +29,25 @@ $baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
 
 
 function hashmdp($mdp){
-	
-	$mdp=1
-	
+	$min= 1000;
+	$max=9999;
+	$cleAl = random_int($min, $max);
+	$mdp_concatene = $cleAl.$mdp;
+	$mdp_hash = password_hash($mdp_concatene, PASSWORD_DEFAULT);
+	sauvegardeMdp($mdp_concatene);
+	return $mdp_hash;
+	}
+
+function sauvegardeMdp($mdp_concatene){
+	$base_cleMdP = fopen('mdp.csv', 'a+');
+	fwrite($base_cleMdP, $mdp_concatene);
+	fwrite($base_cleMdP, ";", 1);
+	fclose($base_cleMdP);
 	}
 
 
 function ecritureCSV(){
-	$nomFammile, $prenom, $aMail, $num, $aPostale, $f, $groupeTD, $photoP, $mdp, $mdp2 = recupDonnees();
+	//$nomFammile, $prenom, $aMail, $num, $aPostale, $f, $groupeTD, $photoP, $mdp, $mdp2 = recupDonnees();
 
 /*// on vérifie que les champs sont bien remplis
 if(isset($_POST['nomFamille'])){
