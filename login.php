@@ -38,12 +38,12 @@ function hashmdp(mdp){
 function ecritureCSV(){
 	$nomFammile, $prenom, $aMail, $num, $aPostale, $f, $groupeTD, $photoP, $mdp, $mdp2 = recupDonnees();
 
-// on vérifie que les champs sont bien remplis
+/*// on vérifie que les champs sont bien remplis
 if(isset($_POST['nomFamille'])){
 	echo("Vous n'avez pas remplis tous les champs");
 	
 	}
-else{
+else{*/
 	
 	//on vérifie que les 2 mots de passes sont identiques
 	if ($mdp=$mdp2){
@@ -79,7 +79,7 @@ else{
 		echo("Les 2 mots de passe que vous avez rentrez ne sont pas identique");
 		}
 	
-	}
+	//}
 }	
 	
 ecritureCSV();
