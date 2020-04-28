@@ -21,7 +21,7 @@ $tailleBDD = len($bddEtu);
 //while fin du fichier
 for ($i=0; $i<$tailleBDD; $i++){
 	fread();
-	File();
+	file();
 	explode();
 	
 	
