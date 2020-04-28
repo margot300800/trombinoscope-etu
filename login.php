@@ -9,7 +9,7 @@ $f = $_POST['filiere'];
 $groupeTD = $_POST['gpTD'];
 $photoP = $_POST['pp'];
 $mdp = $_POST['pwd'];
-$mdp2 = $_PODT['pwd2'];
+$mdp2 = $_POST['pwd2'];
 $baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
 
 
@@ -47,6 +47,18 @@ function sauvegardeMdp($mdp_concatene){
 
 
 function ecritureCSV(){
+	$nomFamille = $_POST['nomFam'];
+	$prenom = $_POST['prenom'];
+	$aMail = $_POST['addMail'];
+	$num = $_POST['numero'];
+	$aPostale = $_POST['addPostale'];
+	$f = $_POST['filiere'];
+	$groupeTD = $_POST['gpTD'];
+	$photoP = $_POST['pp'];
+	$mdp = $_POST['pwd'];
+	$mdp2 = $_POST['pwd2'];
+//	$baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
+
 	//$nomFammile, $prenom, $aMail, $num, $aPostale, $f, $groupeTD, $photoP, $mdp, $mdp2 = recupDonnees();
 
 /*// on vérifie que les champs sont bien remplis
