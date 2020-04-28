@@ -17,8 +17,26 @@ array_push($Liste_article, array("ID" => $result->ID, "Titre" => $result->Titre,
 $bddEtu= fopen("inscrits_etu.csv", "r");//--> descripteur
 $tailleBDD = len($bddEtu);
 
-
+$i=0;
 //while fin du fichier
+while($tab=fgetcsv($bddEtu,1024,';')){
+	$ligne []= fgets($bddEtu,1024);
+	$i ++;
+	for ($i=0;$i<1024; $i++){
+			for($j=0; $j<len($ligne); $j++){
+				if($ligne[$i][$j]= "LPI"){
+				echo($ligne[$i][$j]);
+					}
+				}
+			else if ($ligne[$i][$j]= "MIPI"){
+				}
+			}
+		
+	}
+fclose($bddEtu) ;
+
+
+/*
 for ($i=0; $i<$tailleBDD; $i++){
 	fread();
 	file();
@@ -26,7 +44,7 @@ for ($i=0; $i<$tailleBDD; $i++){
 	
 	
 	}
-
+*/
 
 
 
