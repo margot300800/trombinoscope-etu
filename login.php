@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 $nomFamille = $_POST['nomFam'];
 $prenom = $_POST['prenom'];
 $aMail = $_POST['addMail'];
 $num = $_POST['numero'];
 $aPostale = $_POST['addPostale'];
-$f = $_POST['filiere'];
+$fili = $_POST['filiere'];
 $groupeTD = $_POST['gpTD'];
 $photoP = $_POST['pp'];
 $mdp = $_POST['pwd'];
@@ -52,11 +52,13 @@ function ecritureCSV(){
 	$aMail = $_POST['addMail'];
 	$num = $_POST['numero'];
 	$aPostale = $_POST['addPostale'];
-	$f = $_POST['filiere'];
+	$fili = $_POST['filiere'];
 	$groupeTD = $_POST['gpTD'];
 	$photoP = $_POST['pp'];
 	$mdp = $_POST['pwd'];
 	$mdp2 = $_POST['pwd2'];
+	$donneesEtu = array();
+	
 //	$baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
 
 	//$nomFammile, $prenom, $aMail, $num, $aPostale, $f, $groupeTD, $photoP, $mdp, $mdp2 = recupDonnees();
@@ -72,8 +74,11 @@ else{*/
 	if ($mdp=$mdp2){
 		$mdp_hash = hashmdp($mdp);
 		$baseCSVdonnee = fopen('inscrits_etu.csv', 'a+');
-		
-		fwrite($baseCSVdonnee, $f);
+		$donneeEtu = array($fili, $groupeTD, $nomFamille, $prenom, $aMail, $num, $aPostale, $mdp_hash);
+		foreach ($donneeEtu as $line){
+			fputcsv($baseCSVdonnee,$donneeEtu);
+		}
+		/*fwrite($baseCSVdonnee, $fili);
 		fwrite($baseCSVdonnee, ";", 1);
 		
 		fwrite($baseCSVdonnee, $groupeTD);
@@ -95,8 +100,10 @@ else{*/
 		
 		fwrite($baseCSVdonnee, ";", 1);
 		fwrite($baseCSVdonnee, $mdp_hash);
+		fwrite($baseCSVdonnee, ";", 1);
+		fwrite($baseCSVdonnee, "\n", 2);
 		
-		fclose($baseCSVdonnee);
+		fclose($baseCSVdonnee);*/
 		}
 	else{
 		echo("Les 2 mots de passe que vous avez rentrez ne sont pas identique");
