@@ -1,58 +1,90 @@
 <?php
 
-function get_list_etu($pdo) { //je passe en paramètre mon objet PDO précédemment créé afin d'exécuter ma requête
+define("filiere_csv", 0);
+define("groupes_csv", 1);
+define("nomFam_csv", 2);
+define("prenom_csv", 3);
+define("mail_csv", 4);
+define("numero_csv", 5);
+//define("", 6);
 
-/*$sql = "SELECT * FROM articles"; $exe = $pdo->query($sql); //création de la requête Sql pour aller chercher tous les articles*/
+
+function genereCle(){
+	$min = 1000;
+	$max = 9999;
+	$cle = rand($min, $max);
+	$cle_hash = password_hash($cle, PASSWORD_DEFAULT);
+	return ($cle_hash);
+	}
+
+
+function get_list_etu($JsonFili) {
+
 
 $Liste_usr = array(); //création d'un tableau qui va contenir tous nos etudiants
 
-
-//version Mysql
-while($result = $exe->fetch(PDO::FETCH_OBJ)) { //Exécution de la requête définie plus haut
-
-array_push($Liste_article, array("ID" => $result->ID, "Titre" => $result->Titre, "Date" => $result->Date)); //on ajoute tous les articles dans notre tableau
-
-}
-
 $bddEtu= fopen("inscrits_etu.csv", "r");//--> descripteur
-$tailleBDD = len($bddEtu);
+//$tailleBDD = sizeof($bddEtu);
 
-$i=0;
+$a=0;
+$groupe= $JsonFili;
+$groupe["etudiants"] = array();
+/*array( "nomFili"      => $filiere,
+				"groupes"      => $groupes,
+				"etudiants" => array()
+		);*/
+    
+ 
 //while fin du fichier
-while($tab=fgetcsv($bddEtu,1024,';')){
-	$ligne []= fgets($bddEtu,1024);
-	$i ++;
-	for ($i=0;$i<1024; $i++){
-			for($j=0; $j<len($ligne); $j++){
-				if($ligne[$i][$j]= "LPI"){
-				echo($ligne[$i][$j]);
-					}
+while($tab=fgetcsv("inscrits_etu.csv",1024,';')){
+	$Liste_usr = fgets("inscrits_etu.csv",1024, ';');
+	$a ++;
+	//for ($i=0;$i<sizeof($bddEtu); $i++){
+		//for($j=0; $j<sizeof($Liste_usr); $j++){
+			if($filiere == $Liste_usr[filiere_csv] && $groupes == $Liste_usr[groupes_csv]){
+				$etu= array();
+				$etu["nom"]= $Liste_usr["nomFam_csv"] ;
+				$etu["prenom"]= $Liste_usr["prenom_csv"];
+				$etu["mail"]= $Liste_usr["mail_csv"];
+				$etu["numero_tel"]= $Liste_usr["numero_csv"];
+				$groupe ["etudiants"]= $etu;
+			echo($etu);
 				}
-			else if ($ligne[$i][$j]= "MIPI"){
-				}
-			}
+			//}
+			
+		//}
 		
 	}
-fclose($bddEtu) ;
+	fclose("inscrits_etu.csv") ;
 
-
-/*
-for ($i=0; $i<$tailleBDD; $i++){
-	fread();
-	file();
-	explode();
-	
-	
-	}
+/*function lectureEtu("inscrits_etu.csv"){
+	$etu= array();
+	while(!feofbddEtu){
+		$etu = fgets('inscrits_etu.csv',1024);
+		
+		}
+	fclose('inscrits_etu.csv') ;
+	echo $etu;
+}
 */
+$donnees=json_encode($groupe);
 
 
-
-
-return $Liste_usr; //on renvoie le tableau contenant tous nos articles
+print_r( $donnees); //on renvoie le tableau avec tous les groupes et tous les etu
 
 }
 
+function jsonEnTableau($fichJson) {
+ $array = json_decode($fichJson, true);
+ //echo $array;
+ return $array;
+}
 
+$fichJson = file_get_contents("filieres_groupes.json");
+
+$FichierJson=jsonEnTableau($fichJson);
+
+genereCle();
+get_list_etu($FichierJson);
 
 ?>

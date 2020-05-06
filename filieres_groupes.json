@@ -1,0 +1,47 @@
+{
+    "listeFilieres":[
+
+        {
+            "nomFili":"LPI",
+            "groupes":[
+                "1",
+                "2",
+                "3"
+            ]
+        },
+
+        {
+            "nomFili":"L1-MIPI",
+            "groupes":[
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "J"
+            ]
+        },
+        {
+            "nomFili":"L2-MIPI",
+            "groupes":[
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F"
+            ]
+        },
+        {
+            "nomFili":"L3-MIPI",
+            "groupes":[
+                "A",
+                "B",
+                "C",
+                "D"
+            ]
+        }
+    ]
+    
+}
