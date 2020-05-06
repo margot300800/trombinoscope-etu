@@ -23,7 +23,7 @@ function get_list_etu($JsonFili) {
 
 $Liste_usr = array(); //création d'un tableau qui va contenir tous nos etudiants
 
-$bddEtu= fopen("inscrits_etu.csv", "r");//--> descripteur
+$bddEtu= fopen("inscrits_etu.csv", "a+");//--> descripteur
 //$tailleBDD = sizeof($bddEtu);
 
 $a=0;
@@ -36,12 +36,12 @@ $groupe["etudiants"] = array();
     
  
 //while fin du fichier
-while($tab=fgetcsv("inscrits_etu.csv",1024,';')){
-	$Liste_usr = fgets("inscrits_etu.csv",1024, ';');
+while($tab=fgetcsv($bddEtu,1024,';')){
+	$Liste_usr = fgets($bddEtu,1024);
 	$a ++;
 	//for ($i=0;$i<sizeof($bddEtu); $i++){
 		//for($j=0; $j<sizeof($Liste_usr); $j++){
-			if($filiere == $Liste_usr[filiere_csv] && $groupes == $Liste_usr[groupes_csv]){
+			if($groupe["nomFili"] == $Liste_usr["filiere_csv"] && $groupe["groupes"] == $Liste_usr["groupes_csv"]){
 				$etu= array();
 				$etu["nom"]= $Liste_usr["nomFam_csv"] ;
 				$etu["prenom"]= $Liste_usr["prenom_csv"];
@@ -55,7 +55,7 @@ while($tab=fgetcsv("inscrits_etu.csv",1024,';')){
 		//}
 		
 	}
-	fclose("inscrits_etu.csv") ;
+	fclose($bddEtu) ;
 
 /*function lectureEtu("inscrits_etu.csv"){
 	$etu= array();

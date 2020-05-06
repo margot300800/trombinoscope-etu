@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-
-
 function hashmdp($mdp){
 	$min= 1000;
 	$max=9999;
@@ -47,7 +45,7 @@ function ecritureCSV(){
 		echo("Les 2 mots de passe que vous avez rentrez ne sont pas identique");
 		}
 	
-	//}
+
 }	
 	
 ecritureCSV();
